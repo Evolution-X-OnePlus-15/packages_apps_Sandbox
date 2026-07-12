@@ -317,6 +317,12 @@ fun SandboxApp(
         onTabIndexChange(pagerState.currentPage)
     }
 
+    LaunchedEffect(selectedTabIndex) {
+        if (pagerState.currentPage != selectedTabIndex) {
+            pagerState.animateScrollToPage(selectedTabIndex)
+        }
+    }
+
     val reloadApps: () -> Unit = {
         refreshKey++
         selectedApp?.let { selected ->
